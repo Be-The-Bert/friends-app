@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class FriendZone extends Component {
+class FriendZone extends Component {
 
     // Render method
     render() {
@@ -9,7 +10,7 @@ export default class FriendZone extends Component {
                 <h1>The FriendZone:</h1>
                 <ol>
                     {
-                        this.props.listOfFriends.map( (friend, i) => {
+                        this.props.friendsList.map( (friend, i) => {
                             return <li key={i}>{friend}</li>
                         })
                     }
@@ -18,3 +19,12 @@ export default class FriendZone extends Component {
         )
     }
 }
+
+
+function mapStateToProps(state) {
+    return {
+        friendsList: state.friends
+    }
+}
+
+export default connect(mapStateToProps)(FriendZone);
